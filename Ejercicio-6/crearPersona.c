@@ -5,7 +5,7 @@
 
 persona_t *crearPersona(char *nombre, int edad){
     
-    persona_t *persona = malloc(2 * sizeof(persona_t));
+    persona_t *persona = malloc(sizeof(persona_t));
     persona->nombre = nombre;
     persona->edad = edad;
     return persona;

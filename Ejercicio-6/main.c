@@ -9,6 +9,7 @@ int main () {
     persona_t *agus = crearPersona("Agustin",22);
     
     printf("%s\n", agus->nombre);
+    printf("%d\n", agus->edad);
     eliminarPersona(agus);
     printf("%s\n", agus->nombre); //Segmentation fault. Ya no esta definido
                                  // Este bloque de memoria
