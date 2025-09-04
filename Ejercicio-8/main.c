@@ -8,6 +8,7 @@ fat32_t* f1 = new_fat32();
 fat32_t* f2 = new_fat32();
 listAddFirst(l, f1);
 listAddFirst(l, f2);
+cambiarDeOrden(l,1,2);
 listDelete(l);
 rm_fat32(f1);
 rm_fat32(f2);

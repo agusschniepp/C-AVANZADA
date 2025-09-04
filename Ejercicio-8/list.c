@@ -74,3 +74,23 @@ free(tmp);
 }
 free(l);
 }
+
+void cambiarDeOrden(list_t* l, uint8_t i, uint8_t j){
+    if(l->size <= 1){
+        // Lista vacia o un solo elemento
+    }else{
+        node_t *previo1
+        node_t *previo2
+        node_t *nodo1 = l->first;
+        node_t *nodo2 = l->first;
+        for(int x = 0; x < i;x++){
+            previo1 = nodo1;
+            nodo1 = nodo1->next;
+        }
+        for(int x = 0; x < j;x++){
+            previo2 = nodo2;
+            nodo2 = nodo2->next;
+        }
+    }
+}
+

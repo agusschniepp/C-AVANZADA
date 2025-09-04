@@ -2,7 +2,6 @@
 #define LIST_H
 
 #include "type.h"
-#include <stdio.h>
 typedef struct node {
 void* data;
 struct node* next;
@@ -17,5 +16,6 @@ void listAddFirst(list_t* l, void* data); //copia el dato
 void* listGet(list_t* l, uint8_t i); //se asume: i < l->size
 void* listRemove(list_t* l, uint8_t i); //se asume: i < l->size
 void listDelete(list_t* l);
+void cambiarDeOrden(list_t* l, uint8_t i, uint8_t j);
 
 #endif // LIST_H
