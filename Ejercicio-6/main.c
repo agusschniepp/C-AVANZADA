@@ -11,7 +11,7 @@ int main () {
     printf("%s\n", agus->nombre);
     printf("%d\n", agus->edad);
     eliminarPersona(agus);
-    printf("%s\n", agus->nombre); //Segmentation fault. Ya no esta definido
+    //printf("%s\n", agus->nombre); //Segmentationn fault. Ya no esta definido
                                  // Este bloque de memoria
     return 0;
 }
