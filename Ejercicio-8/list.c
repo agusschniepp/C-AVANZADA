@@ -76,21 +76,55 @@ free(l);
 }
 
 void cambiarDeOrden(list_t* l, uint8_t i, uint8_t j){
-    if(l->size <= 1){
-        // Lista vacia o un solo elemento
-    }else{
-        node_t *previo1
-        node_t *previo2
-        node_t *nodo1 = l->first;
-        node_t *nodo2 = l->first;
-        for(int x = 0; x < i;x++){
-            previo1 = nodo1;
-            nodo1 = nodo1->next;
-        }
-        for(int x = 0; x < j;x++){
-            previo2 = nodo2;
-            nodo2 = nodo2->next;
-        }
+    if (!l || l->size <= 1 || i == j || i > l->size || j > l->size) {
+        return; // nada que hacer
+    }
+
+    if (i > j) { 
+        // Para simplificar: siempre que i < j
+        uint8_t tmp = i; 
+        i = j; 
+        j = tmp;
+    }
+
+    node_t *previo1 = NULL, *previo2 = NULL;
+    node_t *nodo1 = l->first;
+    node_t *nodo2 = l->first;
+
+    // avanzar hasta i
+    for (uint8_t x = 0; x < i - 1; x++) {
+        previo1 = nodo1;
+        nodo1 = nodo1->next;
+    }
+
+    // avanzar hasta j
+    for (uint8_t x = 0; x < j - 1; x++) {
+        previo2 = nodo2;
+        nodo2 = nodo2->next;
+    }
+
+    // Si alguno es NULL, salimos (no debería pasar por chequeos previos)
+    if (!nodo1 || !nodo2) return;
+
+    // Caso especial: nodos adyacentes
+    if (nodo1->next == nodo2) {
+        if (previo1) previo1->next = nodo2;
+        else l->first = nodo2;
+
+        nodo1->next = nodo2->next;
+        nodo2->next = nodo1;
+    } else {
+        // Intercambiar punteros en general
+        node_t *tmp = nodo2->next;
+
+        if (previo1) previo1->next = nodo2;
+        else l->first = nodo2;
+
+        if (previo2) previo2->next = nodo1;
+        else l->first = nodo1;
+
+        nodo2->next = nodo1->next;
+        nodo1->next = tmp;
     }
 }
 
