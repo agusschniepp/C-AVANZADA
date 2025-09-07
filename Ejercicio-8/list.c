@@ -8,6 +8,7 @@ list_t* l = malloc(sizeof(list_t));
 l->type = t; // l->type es equivalente a (*l).type
 l->size = 0;
 l->first = NULL;
+l->ultimo = NULL;
 return l;
 }
 void listAddFirst(list_t* l, void* data) {
@@ -25,8 +26,35 @@ break;
 }
 n->next = l->first;
 l->first = n;
+n->last = n;
+if(l->size == 0){
+    l->ultimo = n;
+}
 l->size++;
 }
+void listAddLast(list_t* l, void* data) {
+node_t* n = malloc(sizeof(node_t));
+switch(l->type) {
+case TypeFAT32:
+n->data = (void*) copy_fat32((fat32_t*) data);
+break;
+case TypeEXT4:
+n->data = (void*) copy_ext4((ext4_t*) data);
+break;
+case TypeNTFS:
+n->data = (void*) copy_ntfs((ntfs_t*) data);
+break;
+}
+n->next = NULL;
+n->last = l->ultimo;
+l->ultimo->next = n;
+l->ultimo = n;
+l->size++;
+}
+
+
+
+
 //se asume: i < l->size
 void* listGet(list_t* l, uint8_t i){
 node_t* n = l->first;
